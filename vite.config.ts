@@ -1,5 +1,5 @@
 import { defineConfig } from "vite"
-import type { CommonServerOptions } from "vite"
+import type { CommonServerOptions, UserConfig } from "vite"
 import { svelte } from "@sveltejs/vite-plugin-svelte"
 
 const serverConfig: CommonServerOptions = {
@@ -8,14 +8,27 @@ const serverConfig: CommonServerOptions = {
     strictPort: true
 }
 
+const baseConfig: UserConfig = defineConfig({
+    server: serverConfig,
+    preview: serverConfig,
+    build: {
+        outDir: "./build"
+    },
+    plugins: [svelte()]
+})
+
 export default defineConfig(({ mode }) => {
-    return {
-        base: (mode === "production") ? "/test-repo/" : "/",
-        server: serverConfig,
-        preview: serverConfig,
-        build: {
-            outDir: "./build"
-        },
-        plugins: [svelte()]
+    if (mode === "development") {
+        return {
+            // Development Mode Config
+            ...baseConfig,
+            base: "/"
+        }
+    } else {
+        return {
+            // Production Mode Config
+            ...baseConfig,
+            base: "/test-repo/"
+        }
     }
 })
