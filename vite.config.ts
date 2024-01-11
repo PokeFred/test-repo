@@ -1,5 +1,6 @@
 import { defineConfig } from "vite"
 import type { CommonServerOptions } from "vite"
+import { svelte } from "@sveltejs/vite-plugin-svelte"
 
 const serverConfig: CommonServerOptions = {
     host: "0.0.0.0",
@@ -14,6 +15,7 @@ export default defineConfig(({ mode }) => {
         preview: serverConfig,
         build: {
             outDir: "./build"
-        }
+        },
+        plugins: [svelte()]
     }
 })
