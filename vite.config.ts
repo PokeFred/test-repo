@@ -7,10 +7,13 @@ const serverConfig: CommonServerOptions = {
     strictPort: true
 }
 
-export default defineConfig({
-    server: serverConfig,
-    preview: serverConfig,
-    build: {
-        outDir: "./build"
+export default defineConfig(({ mode }) => {
+    return {
+        base: (mode === "production") ? "/" : "/test-repo",
+        server: serverConfig,
+        preview: serverConfig,
+        build: {
+            outDir: "./build"
+        }
     }
 })
