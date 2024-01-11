@@ -9,7 +9,7 @@ const serverConfig: CommonServerOptions = {
 
 export default defineConfig(({ mode }) => {
     return {
-        base: (mode === "production") ? "/" : "/test-repo",
+        base: (mode === "production") ? "/" : "/test-repo/",
         server: serverConfig,
         preview: serverConfig,
         build: {
