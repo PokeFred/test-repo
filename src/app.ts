@@ -1,3 +1,4 @@
+import "./app.css"
 // @ts-ignore
 import App from "./app.svelte"
 

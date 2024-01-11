@@ -2,4 +2,4 @@
     <title>My Website</title>
 </svelte:head>
 
-<div>My Website</div>
+<div class="text-3xl">My Website</div>
